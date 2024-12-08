@@ -113,8 +113,12 @@ if uploaded_image:
         confidence = yhat * 100 if yhat > 0.5 else (1 - yhat) * 100
         prediction = 1 if yhat > 0.5 else 0  # 1 for Real, 0 for Fake
 
+    if model_name == "Vision Transformer (ViT)":
+        labels = ["Real", "Fake"]  # ViT-specific label order
+    else:
+        labels = ["Fake", "Real"]  # CNN-specific label order
+
     # Display prediction
-    labels = ["Fake", "Real"]
     st.write(f"**Model Used**: {model_name}")
     st.write(f"Prediction: **{labels[prediction]}**")
     st.write(f"Confidence: {confidence:.2f}%")
